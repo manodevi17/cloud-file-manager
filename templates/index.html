@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud File Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        h1 {
+            color: #232f3e;
+            border-bottom: 3px solid #ff9900;
+            padding-bottom: 10px;
+        }
+        .upload-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e88a00;
+        }
+        .file-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .file-name {
+            font-weight: bold;
+            color: #232f3e;
+        }
+        .file-date {
+            color: #888;
+            font-size: 0.85em;
+        }
+        a {
+            color: #ff9900;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>☁️ Cloud File Manager</h1>
+
+    <div class="upload-section">
+        <h2>Upload File</h2>
+        <p>Allowed: PDF, JPG, PNG | Max size: 5MB</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <div class="file-list">
+        <h2>Uploaded Files</h2>
+        {% if files %}
+            {% for file in files %}
+            <div class="file-item">
+                <div>
+                    <span class="file-name">{{ file["Key"] }}</span><br>
+                    <span class="file-date">Uploaded: {{ file["LastModified"].strftime("%Y-%m-%d %H:%M") }}</span>
+                </div>
+                <div>
+                    <a href="/download/{{ file['Key'] }}">Download</a>
+                    <a href="/delete/{{ file['Key'] }}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No files uploaded yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
