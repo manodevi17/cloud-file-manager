@@ -31,6 +31,7 @@ User (Browser) → Flask App → Boto3 → AWS S3 Bucket
 2. Run: python app.py
 3. Open browser: http://127.0.0.1:5000
 
+## AWS Architecture deployment section
 git add .
 git commit -m "Added AWS architecture and deployment documentation"
 git push
