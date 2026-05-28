@@ -1,6 +1,6 @@
-# Cloud File Manager
+# File Manager with AWS S3 API and Role-Based Access Control
 
-A cloud-based file management system built with Flask and AWS S3.
+A file management system built with Flask and Boto3 using AWS S3 API simulation (moto), with role-based access control.
 
 ## Technologies Used
 - Python 3.13
@@ -15,16 +15,16 @@ A cloud-based file management system built with Flask and AWS S3.
 - Download files
 - Delete files
 - Upload timestamp display
-- IAM role-based access control (Admin and Viewer roles)
+- Role-based access control inspired by AWS IAM principles (Admin and Viewer roles)
 
-## IAM Roles
+## Roles
 - Admin: upload, download, delete
 - Viewer: download only
 
 ## Architecture
-User (Browser) → Flask App → Boto3 → AWS S3 Bucket
+User (Browser) → Flask App → Boto3 → S3 API (moto simulation)
                                 ↑
-                         IAM Role controls access
+                         Role-based access control
 
 ## AWS Architecture (Production Deployment Design)
 
